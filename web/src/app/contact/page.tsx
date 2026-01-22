@@ -13,15 +13,31 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xlgjewpo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormState({ name: "", email: "", message: "" });
+      } else {
+        alert("Transmission failed. Please try again or email me directly.");
+      }
+    } catch (error) {
+      alert("Handshake error. Check your connection.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      setFormState({ name: "", email: "", message: "" });
-    }, 1500);
+    }
   };
 
   return (

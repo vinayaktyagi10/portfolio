@@ -2,7 +2,7 @@
 
 # Configuration
 REGISTRY="git.toolden.xyz"
-USERNAME="vinayak"
+USERNAME="admin"
 IMAGE_NAME="portfolio"
 TAG="latest"
 

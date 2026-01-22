@@ -1,0 +1,35 @@
+name: Deploy Portfolio
+run-name: Deploying to Homelab Server 🚀
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger from Gitea UI
+
+jobs:
+  deploy:
+    # Use the label you assigned to your local runner (usually 'ubuntu-latest')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull Latest Image
+        # Since we use the Registry Handoff, the image is already in the registry
+        run: docker pull git.toolden.xyz/admin/portfolio:latest
+
+      - name: Stop and Remove Old Container
+        # The '|| true' ensures the workflow doesn't fail if the container isn't running
+        run: |
+          docker stop portfolio || true
+          docker rm portfolio || true
+
+      - name: Start New Container
+        run: |
+          docker run -d \
+            --name portfolio \
+            --restart always \
+            --network us_default \
+            git.toolden.xyz/admin/portfolio:latest
+
+      - name: Cleanup Old Images
+        run: docker image prune -f
