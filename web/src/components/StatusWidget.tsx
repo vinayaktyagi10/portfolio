@@ -11,7 +11,17 @@ export default function StatusWidget() {
       try {
         const res = await fetch("/api/status");
         const data = await res.json();
-        setStatus(data.status);
+        
+        if (data.services) {
+          const allOnline = data.services.every((s: any) => s.online);
+          const someOnline = data.services.some((s: any) => s.online);
+          
+          if (allOnline) setStatus("operational");
+          else if (someOnline) setStatus("degraded");
+          else setStatus("offline");
+        } else {
+          setStatus("offline");
+        }
       } catch (e) {
         setStatus("offline");
       }
