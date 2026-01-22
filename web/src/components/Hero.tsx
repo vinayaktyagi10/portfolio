@@ -88,9 +88,12 @@ export default function Hero() {
           <Terminal size={18} />
           View Projects
         </Link>
-        <Link href="/resume" className="flex items-center gap-2 border border-terminal-dark-gray text-terminal-dim px-6 py-3 hover:border-terminal-blue hover:text-terminal-blue transition-colors">
+        <Link href="/resume" className="flex items-center gap-2 bg-terminal-green text-terminal-black px-6 py-3 font-bold hover:bg-terminal-green-dim transition-colors">
           Interactive Resume <ArrowRight size={18} />
         </Link>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border border-terminal-dark-gray text-terminal-dim px-6 py-3 hover:border-terminal-blue hover:text-terminal-blue transition-colors">
+          view_static_cv <ArrowRight size={18} />
+        </a>
       </motion.div>
 
       <motion.div 

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Terminal as TerminalIcon } from "lucide-react";
+import { Terminal as TerminalIcon, Download } from "lucide-react";
 
 export default function About() {
   return (
@@ -20,9 +20,14 @@ export default function About() {
           <p className="text-terminal-dim text-lg">
             Second-year Computer Science student, DevOps intern, and open-source enthusiast.
           </p>
-          <Link href="/resume" className="shrink-0 flex items-center gap-2 border border-terminal-green/30 text-terminal-green px-4 py-2 text-sm hover:bg-terminal-green/10 transition-all rounded-md font-mono">
-            <TerminalIcon size={14} /> resume.sh
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/resume" className="shrink-0 flex items-center gap-2 border border-terminal-green/30 text-terminal-green px-4 py-2 text-sm hover:bg-terminal-green/10 transition-all rounded-md font-mono">
+              <TerminalIcon size={14} /> resume.sh
+            </Link>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="shrink-0 flex items-center gap-2 border border-terminal-blue/30 text-terminal-blue px-4 py-2 text-sm hover:bg-terminal-blue/10 transition-all rounded-md font-mono">
+              <Download size={14} /> resume.pdf
+            </a>
+          </div>
         </div>
       </div>
 
