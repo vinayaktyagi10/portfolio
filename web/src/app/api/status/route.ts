@@ -17,8 +17,8 @@ export async function GET() {
     const services = [
       { name: 'authentik', url: 'http://authentik-server:9000' },
       { name: 'gitea', url: 'http://gitea:3000' },
-      { name: 'adguard', url: 'http://adguard:80' },
-      { name: 'kuma', url: 'http://uptime-kuma:3001' },
+      { name: 'adguard', url: 'http://adguard:3000' },
+      { name: 'dozzle', url: 'http://dozzle:8080' },
     ];
 
     const healthChecks = await Promise.all(
