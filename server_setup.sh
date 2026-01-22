@@ -3,7 +3,7 @@
 # Server-Side Setup Script for Portfolio
 # Run this ON your Homelab Server
 
-NETWORK_NAME="caddy_net"
+NETWORK_NAME="us_default"
 REGISTRY="git.toolden.xyz"
 IMAGE="git.toolden.xyz/admin/portfolio:latest"
 CONTAINER_NAME="portfolio"
