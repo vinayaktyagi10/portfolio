@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VimScroll from "@/components/VimScroll";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -26,6 +27,7 @@ export default function RootLayout({
         className={`${jetbrainsMono.variable} font-mono antialiased bg-terminal-black text-terminal-green selection:bg-terminal-green selection:text-terminal-black`}
       >
         <VimScroll />
+        <ThemeSwitcher />
         <div className="scanline" />
         <Navbar />
         <main className="pt-14 min-h-screen px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

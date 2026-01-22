@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { Terminal as TerminalIcon } from "lucide-react";
 
 export default function About() {
   return (
@@ -14,9 +16,14 @@ export default function About() {
         >
           <span className="text-terminal-green">./</span>about_me
         </motion.h1>
-        <p className="text-terminal-dim text-lg">
-          Second-year Computer Science student, DevOps intern, and open-source enthusiast.
-        </p>
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-terminal-dim text-lg">
+            Second-year Computer Science student, DevOps intern, and open-source enthusiast.
+          </p>
+          <Link href="/resume" className="shrink-0 flex items-center gap-2 border border-terminal-green/30 text-terminal-green px-4 py-2 text-sm hover:bg-terminal-green/10 transition-all rounded-md font-mono">
+            <TerminalIcon size={14} /> resume.sh
+          </Link>
+        </div>
       </div>
 
       {/* Main Content */}

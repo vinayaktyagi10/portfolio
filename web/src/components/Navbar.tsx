@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Terminal, Folder, User, FileText, Mail, Server } from "lucide-react";
-import ThemeSwitcher from "./ThemeSwitcher";
 
 const navItems = [
   { name: "home", path: "/", icon: Terminal },
@@ -30,7 +29,6 @@ export default function Navbar() {
 
         {/* Navigation Links */}
         <div className="flex items-center gap-1 sm:gap-4">
-          <ThemeSwitcher />
           {navItems.map((item) => {
             const isActive = pathname === item.path;
             const Icon = item.icon;

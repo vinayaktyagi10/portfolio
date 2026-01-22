@@ -54,14 +54,6 @@ export default function StatusWidget() {
           {current.text}
         </span>
       </div>
-      <a 
-        href="https://status.toolden.xyz" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-[10px] text-terminal-dim hover:text-terminal-blue flex items-center gap-1 transition-colors"
-      >
-        <Activity size={10} /> View Public Status Page
-      </a>
     </div>
   );
 }

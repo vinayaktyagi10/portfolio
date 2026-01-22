@@ -18,7 +18,8 @@ export async function GET() {
       { name: 'authentik', url: 'http://authentik-server:9000' },
       { name: 'gitea', url: 'http://gitea:3000' },
       { name: 'adguard', url: 'http://adguard:3000' },
-      { name: 'dozzle', url: 'http://dozzle:8080' },
+      { name: 'vaultwarden', url: 'http://vaultwarden:80' },
+      { name: 'jellyfin', url: 'http://jellyfin:8096' },
     ];
 
     const healthChecks = await Promise.all(
