@@ -39,7 +39,7 @@ export default function StatusWidget() {
     offline: { color: "bg-terminal-red", text: "SYSTEMS OFFLINE" },
   };
 
-  const current = config[status];
+  const current = config[status] || config.offline;
 
   return (
     <div className="flex flex-col items-center md:items-start gap-2">

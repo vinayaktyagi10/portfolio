@@ -6,6 +6,8 @@ IMAGE_NAME="git.toolden.xyz/admin/portfolio:latest"
 CONTAINER_NAME="portfolio"
 NETWORK="us_default"
 
+set -e # Exit on error
+
 echo "--- Starting Automated Deployment ---"
 
 # 1. Build locally (Targeting Linux/AMD64)
