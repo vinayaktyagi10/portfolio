@@ -1,9 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Server, Shield, Globe, Database, Cpu, Wifi } from "lucide-react";
+import { Server, Shield, Globe, Database, Cpu, Wifi, Activity, Terminal } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Homelab() {
+  const [telemetry, setTelemetry] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchStats() {
+      const res = await fetch("/api/status");
+      const data = await res.json();
+      setTelemetry(data);
+    }
+    fetchStats();
+    const interval = setInterval(fetchStats, 10000); // Update every 10s
+    return () => clearInterval(interval);
+  }, []);
+
   const categories = [
     {
       title: "Infrastructure & Security",
@@ -67,10 +81,73 @@ export default function Homelab() {
         </p>
         <div className="flex gap-4 text-xs font-mono pt-2">
           <span className="bg-terminal-dark-gray/30 px-2 py-1 rounded text-terminal-green border border-terminal-dark-gray">STATUS: ONLINE</span>
-          <span className="bg-terminal-dark-gray/30 px-2 py-1 rounded text-terminal-blue border border-terminal-dark-gray">UPTIME: 14d 03h</span>
+          <span className="bg-terminal-dark-gray/30 px-2 py-1 rounded text-terminal-blue border border-terminal-dark-gray">UPTIME: {telemetry?.system?.uptime || "Loading..."}</span>
           <span className="bg-terminal-dark-gray/30 px-2 py-1 rounded text-terminal-yellow border border-terminal-dark-gray">OS: UBUNTU SERVER</span>
         </div>
       </div>
+
+      {/* Live Telemetry Widget */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono"
+      >
+        <div className="md:col-span-2 bg-terminal-black border border-terminal-dark-gray p-6 rounded relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            <Terminal size={80} />
+          </div>
+          <h3 className="text-sm font-bold text-terminal-green mb-4 flex items-center gap-2">
+            <Activity size={14} /> LIVE_TELEMETRY
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+            <div className="space-y-1">
+              <div className="text-[10px] text-terminal-dim uppercase">CPU Load</div>
+              <div className="text-xl text-white">{telemetry?.system?.cpu || 0}%</div>
+              <div className="w-full bg-terminal-dark-gray h-1 rounded-full overflow-hidden">
+                <div 
+                  className="bg-terminal-green h-full transition-all duration-1000" 
+                  style={{ width: `${telemetry?.system?.cpu || 0}%` }}
+                />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-[10px] text-terminal-dim uppercase">Memory</div>
+              <div className="text-xl text-white">{telemetry?.system?.mem || 0}%</div>
+              <div className="w-full bg-terminal-dark-gray h-1 rounded-full overflow-hidden">
+                <div 
+                  className="bg-terminal-blue h-full transition-all duration-1000" 
+                  style={{ width: `${telemetry?.system?.mem || 0}%` }}
+                />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-[10px] text-terminal-dim uppercase">Net State</div>
+              <div className="text-xl text-terminal-green">ACTIVE</div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-[10px] text-terminal-dim uppercase">Refresh</div>
+              <div className="text-xl text-terminal-dim animate-pulse">10s</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-terminal-black border border-terminal-dark-gray p-6 rounded">
+          <h3 className="text-sm font-bold text-terminal-blue mb-4 flex items-center gap-2">
+            <Server size={14} /> SERVICE_HEALTH
+          </h3>
+          <ul className="space-y-2 text-xs">
+            {telemetry?.services?.map((s: any) => (
+              <li key={s.name} className="flex justify-between items-center border-b border-terminal-dark-gray/30 pb-1">
+                <span className="text-terminal-text">./{s.name}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-terminal-dim">{s.latency}ms</span>
+                  <span className={`w-2 h-2 rounded-full ${s.online ? "bg-terminal-green" : "bg-terminal-red"}`} />
+                </div>
+              </li>
+            )) || <li className="text-terminal-dim italic">Polling internal network...</li>}
+          </ul>
+        </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {categories.map((cat, i) => {
