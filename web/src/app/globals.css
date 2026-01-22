@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  /* Terminal Color Palette */
+  --terminal-black: #0c0c0c;
+  --terminal-dark-gray: #1a1a1a;
+  --terminal-green: #4af626; 
+  --terminal-green-dim: #2f8c1f;
+  --terminal-text: #e5e5e5;
+  --terminal-blue: #3b8eea;
+  --terminal-purple: #bd93f9;
+  --terminal-yellow: #f1fa8c;
+  --terminal-red: #ff5555;
+  
+  --font-jetbrains-mono: "JetBrains Mono", monospace;
+}
+
+@theme inline {
+  --color-terminal-black: var(--terminal-black);
+  --color-terminal-dark-gray: var(--terminal-dark-gray);
+  --color-terminal-green: var(--terminal-green);
+  --color-terminal-green-dim: var(--terminal-green-dim);
+  --color-terminal-text: var(--terminal-text);
+  --color-terminal-blue: var(--terminal-blue);
+  --color-terminal-purple: var(--terminal-purple);
+  --color-terminal-yellow: var(--terminal-yellow);
+  --color-terminal-red: var(--terminal-red);
+  
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background-color: var(--terminal-black);
+  color: var(--terminal-text);
+  font-family: var(--font-jetbrains-mono);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--terminal-black);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border: 1px solid var(--terminal-black);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Utilities */
+.text-glow {
+  text-shadow: 0 0 10px rgba(74, 246, 38, 0.5);
+}
+
+.scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.1) 50%,
+    rgba(0,0,0,0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  opacity: 0.15;
+}
