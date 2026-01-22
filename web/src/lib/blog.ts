@@ -11,6 +11,13 @@ export interface PostData {
   description: string;
   tags: string[];
   content: string;
+  readingTime: number;
+}
+
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
 }
 
 export function getSortedPostsData(): PostData[] {
@@ -31,6 +38,7 @@ export function getSortedPostsData(): PostData[] {
     return {
       slug,
       content: matterResult.content,
+      readingTime: calculateReadingTime(matterResult.content),
       ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
     };
   });
@@ -55,6 +63,7 @@ export function getPostData(slug: string): PostData {
   return {
     slug,
     content: matterResult.content,
+    readingTime: calculateReadingTime(matterResult.content),
     ...(matterResult.data as { title: string; date: string; description: string; tags: string[] }),
   };
 }

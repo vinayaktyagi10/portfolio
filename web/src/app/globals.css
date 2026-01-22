@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  /* Terminal Color Palette */
+  /* Default (Arch/Green) */
   --terminal-black: #0c0c0c;
   --terminal-dark-gray: #1a1a1a;
   --terminal-green: #4af626; 
@@ -14,6 +14,42 @@
   --terminal-red: #ff5555;
   
   --font-jetbrains-mono: "JetBrains Mono", monospace;
+}
+
+[data-theme='dracula'] {
+  --terminal-black: #282a36;
+  --terminal-dark-gray: #44475a;
+  --terminal-green: #50fa7b;
+  --terminal-green-dim: #40c464;
+  --terminal-text: #f8f8f2;
+  --terminal-blue: #8be9fd;
+  --terminal-purple: #bd93f9;
+  --terminal-yellow: #f1fa8c;
+  --terminal-red: #ff5555;
+}
+
+[data-theme='nord'] {
+  --terminal-black: #2e3440;
+  --terminal-dark-gray: #3b4252;
+  --terminal-green: #a3be8c;
+  --terminal-green-dim: #8fa1b3;
+  --terminal-text: #eceff4;
+  --terminal-blue: #88c0d0;
+  --terminal-purple: #b48ead;
+  --terminal-yellow: #ebcb8b;
+  --terminal-red: #bf616a;
+}
+
+[data-theme='monokai'] {
+  --terminal-black: #272822;
+  --terminal-dark-gray: #3e3d32;
+  --terminal-green: #a6e22e;
+  --terminal-green-dim: #75715e;
+  --terminal-text: #f8f8f2;
+  --terminal-blue: #66d9ef;
+  --terminal-purple: #ae81ff;
+  --terminal-yellow: #e6db74;
+  --terminal-red: #f92672;
 }
 
 @theme inline {

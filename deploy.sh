@@ -1,23 +1,36 @@
 #!/bin/bash
 
 # Configuration
-REGISTRY="git.toolden.xyz"
-USERNAME="admin"
-IMAGE_NAME="portfolio"
-TAG="latest"
+SERVER="homelab"
+IMAGE_NAME="git.toolden.xyz/admin/portfolio:latest"
+CONTAINER_NAME="portfolio"
+NETWORK="us_default"
 
-echo "Starting Deployment Build..."
+echo "--- Starting Automated Deployment ---"
 
-# 1. Login to Registry (Only needed once, but good to check)
-echo "Logging into Gitea Registry..."
-echo $GITEA_TOKEN | docker login $REGISTRY -u $USERNAME --password-stdin
+# 1. Build locally (Targeting Linux/AMD64)
+echo "Building Docker image..."
+docker build --platform linux/amd64 -t $IMAGE_NAME ./web
 
-# 2. Build for Production (Targeting Linux/AMD64 for server)
-echo "Building Docker Image..."
-docker build --platform linux/amd64 -t $REGISTRY/$USERNAME/$IMAGE_NAME:$TAG ./web
+# 2. Save and Compress
+echo "Exporting image..."
+docker save $IMAGE_NAME | gzip > portfolio.tar.gz
 
-# 3. Push to Gitea
-echo "Pushing to Registry..."
-docker push $REGISTRY/$USERNAME/$IMAGE_NAME:$TAG
+# 3. Transfer to Server
+echo "Transferring to server..."
+scp portfolio.tar.gz $SERVER:~ 
 
-echo "Build Pushed Successfully!"
+# 4. Remote Load and Restart
+echo "Deploying on server..."
+ssh $SERVER " \
+    docker load < ~/portfolio.tar.gz && \
+    docker rm -f $CONTAINER_NAME || true && \
+    docker run -d --name $CONTAINER_NAME --restart always --network $NETWORK $IMAGE_NAME && \
+    rm ~/portfolio.tar.gz
+"
+
+# 5. Local Cleanup
+rm portfolio.tar.gz
+
+echo "--- Deployment Complete! ---"
+echo "Live at: https://portfolio.toolden.xyz"

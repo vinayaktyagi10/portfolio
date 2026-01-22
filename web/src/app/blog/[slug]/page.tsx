@@ -63,6 +63,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
             <span className="flex items-center gap-2">
               <span className="text-terminal-green">date:</span> {postData.date}
             </span>
+            <span className="flex items-center gap-2">
+              <span className="text-terminal-green">read:</span> {postData.readingTime} min
+            </span>
             <span className="text-terminal-dark-gray">|</span>
             <div className="flex gap-3">
               <span className="text-terminal-green">tags:</span>

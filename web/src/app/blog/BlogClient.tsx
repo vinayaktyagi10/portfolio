@@ -31,7 +31,12 @@ export default function BlogClient({ posts }: { posts: PostData[] }) {
           >
             <Link href={`/blog/${post.slug}`} className="block space-y-3">
               <div className="flex items-center justify-between text-xs text-terminal-dim">
-                <span>{post.date}</span>
+                <div className="flex items-center gap-4">
+                  <span>{post.date}</span>
+                  <span className="flex items-center gap-1">
+                    <span className="text-terminal-green">~</span> {post.readingTime} min read
+                  </span>
+                </div>
                 <div className="flex gap-2">
                    {post.tags.map(tag => (
                      <span key={tag} className="bg-terminal-dark-gray/30 px-2 py-0.5 rounded text-terminal-blue">{tag}</span>
