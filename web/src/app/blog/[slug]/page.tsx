@@ -18,6 +18,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${post.title} | Vinayak Tyagi`,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.description,
@@ -37,8 +40,27 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const postData = getPostData(slug);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: postData.title,
+    datePublished: postData.date,
+    dateModified: postData.date,
+    description: postData.description,
+    author: {
+      '@type': 'Person',
+      name: 'Vinayak Tyagi',
+      url: 'https://portfolio.toolden.xyz',
+    },
+    url: `https://portfolio.toolden.xyz/blog/${slug}`,
+  };
+
   return (
     <div className="max-w-3xl mx-auto py-12 px-4">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link 
         href="/blog"
         className="inline-flex items-center gap-2 text-terminal-dim hover:text-terminal-green mb-8 transition-colors"

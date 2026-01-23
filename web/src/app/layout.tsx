@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "./",
+    types: {
+      "application/rss+xml": [{ url: "/rss.xml", title: "Vinayak Tyagi's Blog" }],
+    },
+  },
 };
 
 export default function RootLayout({
