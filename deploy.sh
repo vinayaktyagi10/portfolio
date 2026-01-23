@@ -12,7 +12,7 @@ echo "--- Starting Automated Deployment ---"
 
 # 1. Build locally (Targeting Linux/AMD64)
 echo "Building Docker image with BuildKit..."
-DOCKER_BUILDKIT=1 docker build --platform linux/amd64 -t $IMAGE_NAME ./web
+DOCKER_BUILDKIT=1 docker build --network=host --platform linux/amd64 -t $IMAGE_NAME ./web
 
 # 2. Save and Compress
 echo "Exporting image..."
