@@ -20,7 +20,6 @@ export default async function Image() {
           justifyContent: 'center',
           backgroundColor: '#0C0C0C',
           color: '#4AF626',
-          fontFamily: 'monospace',
         }}
       >
         <div
@@ -35,40 +34,20 @@ export default async function Image() {
             backgroundColor: '#111',
           }}
         >
-          <div
-            style={{
-              fontSize: '80px',
-              fontWeight: 'bold',
-              color: '#fff',
-              marginBottom: '20px',
-            }}
-          >
+          <div style={{ display: 'flex', fontSize: '80px', fontWeight: 'bold', color: '#fff', marginBottom: '20px' }}>
             Vinayak Tyagi
           </div>
-          <div
-            style={{
-              fontSize: '32px',
-              color: '#4AF626',
-              marginBottom: '40px',
-            }}
-          >
+          <div style={{ display: 'flex', fontSize: '32px', color: '#4AF626', marginBottom: '40px' }}>
             DevOps & Systems Engineering
           </div>
-          <div
-            style={{
-              display: 'flex',
-              gap: '20px',
-              fontSize: '24px',
-              color: '#6B7280',
-            }}
-          >
-            <span>Linux</span>
-            <span>•</span>
-            <span>Docker</span>
-            <span>•</span>
-            <span>Kubernetes</span>
-            <span>•</span>
-            <span>Go</span>
+          <div style={{ display: 'flex', gap: '20px', fontSize: '24px', color: '#6B7280' }}>
+            <span style={{ display: 'flex' }}>Linux</span>
+            <span style={{ display: 'flex' }}>•</span>
+            <span style={{ display: 'flex' }}>Docker</span>
+            <span style={{ display: 'flex' }}>•</span>
+            <span style={{ display: 'flex' }}>Kubernetes</span>
+            <span style={{ display: 'flex' }}>•</span>
+            <span style={{ display: 'flex' }}>Go</span>
           </div>
         </div>
       </div>

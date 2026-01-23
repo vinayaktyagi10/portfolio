@@ -33,6 +33,9 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+# Install fonts for OG Image generation
+RUN apk add --no-cache font-noto font-noto-emoji
+
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/content ./content
 

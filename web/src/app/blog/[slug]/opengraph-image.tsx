@@ -22,58 +22,39 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundColor: '#0C0C0C', // terminal-black
-          color: '#4AF626', // terminal-green
+          backgroundColor: '#0C0C0C',
+          color: '#4AF626',
           padding: '80px',
-          fontFamily: 'monospace',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: '20px',
-            fontSize: '24px',
-            color: '#6B7280', // terminal-dim
-          }}
-        >
-          <span>~/blog/{slug}</span>
+        <div style={{ display: 'flex', color: '#6B7280', fontSize: '24px', marginBottom: '20px' }}>
+          ~/blog/{slug}
         </div>
-        <div
-          style={{
-            fontSize: '60px',
-            fontWeight: 'bold',
-            color: '#FFFFFF',
-            marginBottom: '40px',
-            lineHeight: 1.2,
-          }}
-        >
+        
+        <div style={{ display: 'flex', color: '#FFFFFF', fontSize: '60px', fontWeight: 'bold', marginBottom: '40px', lineHeight: 1.2 }}>
           {post.title}
         </div>
-        <div
-          style={{
-            display: 'flex',
-            gap: '20px',
-            fontSize: '24px',
-          }}
-        >
-          <div style={{ color: '#4AF626' }}>
+
+        <div style={{ display: 'flex', gap: '20px', fontSize: '24px' }}>
+          <div style={{ display: 'flex', color: '#4AF626' }}>
             $ date -d "{post.date}"
           </div>
-          <div style={{ color: '#2563EB' }}>
+          <div style={{ display: 'flex', color: '#2563EB' }}>
             # {post.tags[0]}
           </div>
         </div>
+
         <div
-            style={{
-                position: 'absolute',
-                bottom: '40px',
-                right: '40px',
-                fontSize: '20px',
-                color: '#6B7280',
-            }}
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            bottom: '40px',
+            right: '40px',
+            fontSize: '20px',
+            color: '#6B7280',
+          }}
         >
-            portfolio.toolden.xyz
+          portfolio.toolden.xyz
         </div>
       </div>
     ),
