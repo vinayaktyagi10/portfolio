@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  verification: {
+    google: "6lthZkbIDkAv3Hv1wq-_wsN9fQKv95Ws0_1iP-ZM84A",
+  },
   robots: {
     index: true,
     follow: true,
