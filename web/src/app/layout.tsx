@@ -12,8 +12,21 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio.toolden.xyz"),
   title: "Vinayak Tyagi | DevOps & Systems",
   description: "DevOps Intern & CS Student crafting efficient, containerized systems.",
+  openGraph: {
+    title: "Vinayak Tyagi | DevOps & Systems",
+    description: "DevOps Intern & CS Student crafting efficient, containerized systems.",
+    url: "https://portfolio.toolden.xyz",
+    siteName: "Vinayak Tyagi",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
