@@ -39,7 +39,11 @@ export default function ThemeSwitcher() {
           >
             <div className="bg-terminal-dark-gray/50 px-4 py-2 border-b border-terminal-dark-gray flex justify-between items-center">
               <span className="text-xs font-bold text-terminal-green uppercase tracking-widest">Select Theme</span>
-              <button onClick={() => setIsOpen(false)} className="text-terminal-dim hover:text-white transition-colors">
+              <button 
+                onClick={() => setIsOpen(false)} 
+                className="text-terminal-dim hover:text-white transition-colors"
+                aria-label="Close theme selector"
+              >
                 <X size={14} />
               </button>
             </div>
@@ -74,6 +78,7 @@ export default function ThemeSwitcher() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle theme switcher"
         className={`flex items-center justify-center w-12 h-12 rounded-full border shadow-lg transition-all ${
           isOpen 
             ? "bg-terminal-green text-terminal-black border-terminal-green" 

@@ -34,7 +34,12 @@ export default function Navbar() {
             const Icon = item.icon;
             
             return (
-              <Link key={item.path} href={item.path} className="relative group px-3 py-1.5">
+              <Link 
+                key={item.path} 
+                href={item.path} 
+                className="relative group px-3 py-1.5"
+                aria-label={item.name}
+              >
                 {isActive && (
                   <motion.div
                     layoutId="nav-pill"

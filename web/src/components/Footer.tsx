@@ -12,13 +12,13 @@ export default function Footer() {
 
         {/* Links */}
         <div className="flex gap-6 text-terminal-dim">
-          <a href="https://github.com/vinayaktyagi10" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href="https://github.com/vinayaktyagi10" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="GitHub Profile">
             <Github size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/vinayaktyagi10" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+          <a href="https://www.linkedin.com/in/vinayaktyagi10" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn Profile">
             <Linkedin size={20} />
           </a>
-          <a href="mailto:vinayaktyagi.ed@gmail.com" className="hover:text-white transition-colors">
+          <a href="mailto:vinayaktyagi.ed@gmail.com" className="hover:text-white transition-colors" aria-label="Send Email">
             <Mail size={20} />
           </a>
         </div>
